@@ -90,7 +90,7 @@ class PlatformBlock extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  "Manufacturer: ${deviceInfo['manufacturer'] ?? 'Unknown'}",
+                  "Manufacturer: ${deviceInfo['manufacturer'] ?? '-'}",
                   style: TextStyle(
                     fontSize: 15,
                     color: theme.primaryColor,
@@ -98,7 +98,7 @@ class PlatformBlock extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  "Version: ${deviceInfo['version'] ?? 'Unknown'}",
+                  "Version: ${deviceInfo['version'] ?? '-'}",
                   style: TextStyle(
                     fontSize: 15,
                     color: theme.primaryColor,
@@ -106,7 +106,7 @@ class PlatformBlock extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  "Hardware: ${deviceInfo['hardware'] ?? 'Unknown'}",
+                  "Hardware: ${deviceInfo['hardware'] ?? '-'}",
                   style: TextStyle(
                     fontSize: 15,
                     color: theme.primaryColor,
@@ -114,7 +114,7 @@ class PlatformBlock extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  "Device Name: ${deviceInfo['name'] ?? 'Unknown'}",
+                  "Device Name: ${deviceInfo['name'] ?? '-'}",
                   style: TextStyle(
                     fontSize: 15,
                     color: theme.primaryColor,
@@ -122,7 +122,7 @@ class PlatformBlock extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  "Display: ${deviceInfo['display'] ?? 'Unknown'}",
+                  "Display: ${deviceInfo['display'] ?? '-'}",
                   style: TextStyle(
                     fontSize: 15,
                     color: theme.primaryColor,

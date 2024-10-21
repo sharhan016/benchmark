@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:benchmark/src/services/system_monitor_ffi.dart';
 import 'package:flutter/material.dart';
 import 'package:semicircle_indicator/semicircle_indicator.dart';
@@ -18,6 +20,21 @@ class _RamBlockState extends State<RamBlock> {
   void initState() {
     super.initState();
     _fetchSystemData();
+    _startTimer();
+  }
+
+  Timer? _timer;
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+      _fetchSystemData();
+    });
   }
 
   void _fetchSystemData() {

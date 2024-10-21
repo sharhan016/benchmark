@@ -38,15 +38,19 @@ class NetworkBlock extends StatelessWidget {
                 if (connectionType == 'Offline')
                   _buildIcon(Icons.wifi_off, context),
                 const SizedBox(height: 10),
-                Text('Connection Type: ${networkInfo['connectionType']}'),
+                Text('Connection Type: ${networkInfo['connectionType']}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: theme.primaryColor)),
                 if (networkInfo['wifiName'] != '-')
                   Text(
                     'Wi-Fi Name: ${networkInfo['wifiName']}',
                     textAlign: TextAlign.center,
+                    style: TextStyle(color: theme.primaryColor),
                   ),
                 Text(
                   'IP Address: ${networkInfo['ipAddress']}',
                   textAlign: TextAlign.center,
+                  style: TextStyle(color: theme.primaryColor),
                 ),
               ],
             );

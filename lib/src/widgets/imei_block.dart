@@ -56,6 +56,7 @@ class _ImeiBlockState extends State<ImeiBlock> {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
+            color: theme.primaryColor,
           ),
         ),
       ),

@@ -41,7 +41,7 @@ class _CpuBlockState extends State<CpuBlock> {
     if (_cpuInfo == null) {
       return const Center(child: CircularProgressIndicator());
     }
-
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -54,16 +54,16 @@ class _CpuBlockState extends State<CpuBlock> {
             ),
           ),
           const SizedBox(height: 16.0),
-          _buildCoreInfo(),
+          _buildCpuUsagePieChart(theme),
           const SizedBox(height: 16.0),
-          _buildCpuUsagePieChart(),
+          _buildCoreInfo(theme),
         ],
       ),
     );
   }
 
   // Widget to display core information with temperature
-  Widget _buildCoreInfo() {
+  Widget _buildCoreInfo(ThemeData theme) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -91,7 +91,10 @@ class _CpuBlockState extends State<CpuBlock> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Core ${index + 1}'),
+                  Text(
+                    'Core ${index + 1}',
+                    style: TextStyle(color: theme.primaryColor),
+                  ),
                   Text('${coreFrequency} MHz'), //Frequency:
                   Text(
                     'Temperature: ${_cpuInfo?.cpuTemperature.toStringAsFixed(1)}°C',
@@ -106,24 +109,7 @@ class _CpuBlockState extends State<CpuBlock> {
     );
   }
 
-  // Widget to display CPU usage pie chart
-  // Widget _buildCpuUsagePieChart() {
-  //   final totalUsage = _cpuInfo?.totalUsage ?? 0.0;
-  //   return PieChart(
-  //     dataMap: {
-  //       'Used': totalUsage,
-  //       'Free': 100 - totalUsage,
-  //     },
-  //     colorList: [Colors.blueAccent, Colors.grey],
-  //     chartType: ChartType.ring,
-  //     chartRadius: MediaQuery.of(context).size.width / 2.5,
-  //     centerText: 'Usage',
-  //     legendOptions: const LegendOptions(showLegends: false),
-  //     chartValuesOptions: const ChartValuesOptions(showChartValuesInPercentage: true),
-  //   );
-  // }
-
-  Widget _buildCpuUsagePieChart() {
+  Widget _buildCpuUsagePieChart(ThemeData theme) {
     double totalFrequency = 0.0;
     double maxFrequency = 0.0;
 
