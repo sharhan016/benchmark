@@ -10,6 +10,7 @@ class NetworkBlock extends StatelessWidget {
     final theme = Theme.of(context);
     return Positioned(
       right: 0,
+      // top: 40,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Theme.of(context).primaryColor),
@@ -33,7 +34,7 @@ class NetworkBlock extends StatelessWidget {
               children: [
                 if (connectionType == 'Wi-Fi') _buildIcon(Icons.wifi, context),
                 if (connectionType == 'Mobile')
-                  _buildIcon(Icons.mobile_friendly, context),
+                  _buildIcon(Icons.cell_tower, context),
                 if (connectionType == 'Offline')
                   _buildIcon(Icons.wifi_off, context),
                 const SizedBox(height: 10),

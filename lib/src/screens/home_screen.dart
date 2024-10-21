@@ -4,6 +4,7 @@ import 'package:benchmark/src/controllers/home_controller.dart';
 import 'package:benchmark/src/services/device_info_service.dart';
 import 'package:benchmark/src/settings/settings_controller.dart';
 import 'package:benchmark/src/widgets/cpu_block.dart';
+import 'package:benchmark/src/widgets/imei_block.dart';
 import 'package:benchmark/src/widgets/network_block.dart';
 import 'package:benchmark/src/widgets/platform_block.dart';
 import 'package:benchmark/src/widgets/ram_block.dart';
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
       create: (_) {
         final homeController = HomeController();
         homeController.loadDeviceInfo(); // Load device info
-        homeController.fetchStorageInfo(); // Fetch storage info
+        homeController.fetchStorageInfo(context); // Fetch storage info
         return homeController;
       },
       child: Consumer<HomeController>(
@@ -71,7 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: 8),
                       CpuBlock(),
                       const SizedBox(height: 8),
-                      PlatformBlock(deviceInfo: controller.deviceInfo)
+                      PlatformBlock(deviceInfo: controller.deviceInfo),
+                      const SizedBox(height: 8),
+                      ImeiBlock(),
+                      const SizedBox(height: 18),
                     ],
                   ),
                 ),

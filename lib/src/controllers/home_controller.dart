@@ -34,7 +34,7 @@ class HomeController with ChangeNotifier {
       _networkInfo = networkInfoData;
       notifyListeners();
     });
-    fetchStorageInfo();
+    // fetchStorageInfo();
   }
 
   // Method to load device information
@@ -44,9 +44,9 @@ class HomeController with ChangeNotifier {
   }
 
   // Method to fetch storage information
-  Future<void> fetchStorageInfo() async {
+  Future<void> fetchStorageInfo(BuildContext context) async {
     storageInfoLoaded = false;
-    storageInfo = await _storageService.getStorageInfo();
+    storageInfo = await _storageService.getStorageInfo(context);
     storageInfoLoaded = true;
     print(storageInfo);
     notifyListeners();
