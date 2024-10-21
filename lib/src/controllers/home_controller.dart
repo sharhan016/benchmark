@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:benchmark/src/services/device_info_service.dart';
 
 class HomeController with ChangeNotifier {
-  // Initialize services inside the class
   final DeviceInfoService _deviceInfoService = DeviceInfoService();
   final StorageService _storageService = StorageService();
-  // bool to check if storage info is loaded
+
   bool storageInfoLoaded = false;
 
   final NetworkInfoService _networkInfoService = NetworkInfoService();
@@ -34,16 +33,13 @@ class HomeController with ChangeNotifier {
       _networkInfo = networkInfoData;
       notifyListeners();
     });
-    // fetchStorageInfo();
   }
 
-  // Method to load device information
   Future<void> loadDeviceInfo() async {
     _deviceInfo = await _deviceInfoService.getDeviceInfo();
-    notifyListeners(); // Notify listeners when device info is loaded
+    notifyListeners();
   }
 
-  // Method to fetch storage information
   Future<void> fetchStorageInfo(BuildContext context) async {
     storageInfoLoaded = false;
     storageInfo = await _storageService.getStorageInfo(context);

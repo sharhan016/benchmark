@@ -29,10 +29,9 @@ class NetworkInfoService {
 
   Future<void> _initNetworkInfo() async {
     final initialResult = await _connectivity.checkConnectivity();
-    // final ConnectivityResult initialResult = initialResult.first;
+
     final initialNetworkInfo = await _getNetworkInfo(initialResult.first);
-    _networkInfoSubject
-        .add(initialNetworkInfo); // Emit the initial network info
+    _networkInfoSubject.add(initialNetworkInfo);
   }
 
   Future<Map<String, String>> _getNetworkInfo(ConnectivityResult result) async {

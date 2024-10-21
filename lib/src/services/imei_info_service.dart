@@ -11,7 +11,6 @@ class ImeiService {
     AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
     int sdkInt = androidInfo.version.sdkInt;
 
-    // For Android SDK >= 29
     if (sdkInt >= 29) {
       return await _getDeviceSerialNumber(context);
     } else {
@@ -19,7 +18,6 @@ class ImeiService {
     }
   }
 
-  // For Android versions >= 29
   Future<String?> _getDeviceSerialNumber(BuildContext context) async {
     try {
       AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
@@ -31,11 +29,9 @@ class ImeiService {
     }
   }
 
-  // For Android versions <= 29
   Future<String?> _getImeiForOlderVersions(BuildContext context) async {
     PermissionStatus status = await Permission.phone.status;
 
-    // Check if permission is already granted
     if (status != PermissionStatus.granted) {
       final bool shouldRequest = await _showPermissionDialog(context);
       if (shouldRequest) {
@@ -43,7 +39,6 @@ class ImeiService {
       }
     }
 
-    // Proceed only if permission is granted
     if (status == PermissionStatus.granted) {
       try {
         final String? imei = await platform.invokeMethod('getImei');
@@ -53,7 +48,6 @@ class ImeiService {
         return null;
       }
     } else {
-      // Handle permission denial
       return null;
     }
   }

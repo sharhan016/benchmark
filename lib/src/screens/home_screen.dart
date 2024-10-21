@@ -33,11 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      // create: (_) => _homeController,
       create: (_) {
         final homeController = HomeController();
-        homeController.loadDeviceInfo(); // Load device info
-        homeController.fetchStorageInfo(context); // Fetch storage info
+        homeController.loadDeviceInfo();
+        homeController.fetchStorageInfo(context);
         return homeController;
       },
       child: Consumer<HomeController>(
@@ -58,11 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const SizedBox(height: 8),
                       Stack(
-                        children: [
-                          RamBlock(),
-                          NetworkBlock()
-                          // PlatformBlock(deviceInfo: controller.deviceInfo),
-                        ],
+                        children: [RamBlock(), NetworkBlock()],
                       ),
                       const SizedBox(height: 8),
                       if (controller.storageInfoLoaded)

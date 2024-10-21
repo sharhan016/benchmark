@@ -1,12 +1,7 @@
-// library progress_bar_chart;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart';
 
-/// A widget that displays a progress bar chart.
-///
-/// The [ProgressBarChart] widget is used to display a chart with progress bars.
 class ProgressBarChart extends StatefulWidget {
   const ProgressBarChart({
     super.key,
@@ -19,25 +14,18 @@ class ProgressBarChart extends StatefulWidget {
     this.unitLabel = '%',
   });
 
-  /// A list of [StatisticsItem] objects representing the data to be displayed in the progress bar chart.
   final List<StatisticsItem> values;
 
-  /// The height of the progress bar chart.
   final double height;
 
-  /// The border radius of the progress bars (optional).
   final double? borderRadius;
 
-  /// Whether to show the labels on the progress bars (optional).
   final bool showLables;
 
-  /// Whether to blend the colors of the progress bars (optional).
   final bool colorBlend;
 
-  /// The unit label of the progress values (optional).
   final String unitLabel;
 
-  /// The total percentage of the progress bars (optional).
   final double totalPercentage;
 
   @override
@@ -65,14 +53,13 @@ class _ProgressBarChartState extends State<ProgressBarChart>
       total += percentage;
       percentageValues[i] = StatisticsItem(percentageValues[i].color, total,
           title: percentageValues[i].title,
-          titleColor: percentageValues[i].titleColor); // Added titleColor
+          titleColor: percentageValues[i].titleColor);
     }
 
     percentageValues = percentageValues.reversed.toList();
 
     const maxDuration = Duration(seconds: 1);
 
-    // Create animation controllers and animations for each value
     for (var entry in percentageValues) {
       final duration = Duration(
           milliseconds: (maxDuration.inMilliseconds * entry.value).round());
@@ -113,7 +100,7 @@ class _ProgressBarChartState extends State<ProgressBarChart>
   }
 
   Color getTextColor(Color color, Color? titleColor) {
-    if (titleColor != null) return titleColor; // Return custom title color
+    if (titleColor != null) return titleColor;
     if (widget.colorBlend) {
       return Color.alphaBlend(color.withOpacity(0.3), Colors.black);
     }
@@ -190,8 +177,7 @@ class _ProgressBarChartState extends State<ProgressBarChart>
                                                 style: TextStyle(
                                                   color: getTextColor(
                                                       entry.color,
-                                                      itemOrigin
-                                                          .titleColor), // Use custom title color
+                                                      itemOrigin.titleColor),
                                                   fontSize: widget.height * 0.5,
                                                   fontWeight: FontWeight.w700,
                                                   decoration:
@@ -220,25 +206,19 @@ class _ProgressBarChartState extends State<ProgressBarChart>
   }
 }
 
-/// Represents an item in the statistics chart.
 class StatisticsItem {
-  /// Represents the title of the progress bar chart displayed in tooltips.
   final String? title;
 
-  /// Represents the value of the progress bar chart.
   double value;
 
-  /// Represents the color of the progress bar chart.
   final Color color;
 
-  /// Represents the custom color of the title.
-  final Color? titleColor; // Add titleColor field
+  final Color? titleColor;
 
-  /// Creates a new instance of [StatisticsItem].
   StatisticsItem(
     this.color,
     this.value, {
     this.title,
-    this.titleColor, // Initialize titleColor (optional)
+    this.titleColor,
   });
 }

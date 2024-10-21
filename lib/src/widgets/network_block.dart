@@ -10,7 +10,6 @@ class NetworkBlock extends StatelessWidget {
     final theme = Theme.of(context);
     return Positioned(
       right: 0,
-      // top: 40,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Theme.of(context).primaryColor),

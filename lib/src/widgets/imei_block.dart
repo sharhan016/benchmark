@@ -31,15 +31,6 @@ class _ImeiBlockState extends State<ImeiBlock> {
     }
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: AppBar(title: Text("IMEI Info")),
-  //     body: Center(
-  //       child: ImeiBlock(imeiNumber: imeiNumber),
-  //     ),
-  //   );
-  // }
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

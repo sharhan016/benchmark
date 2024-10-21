@@ -1,8 +1,7 @@
-import 'dart:ffi' as ffi; // For FFI
-import 'dart:io'; // For Platform check
-import 'package:ffi/ffi.dart'; // For memory allocation
+import 'dart:ffi' as ffi;
+import 'dart:io';
+import 'package:ffi/ffi.dart';
 
-// Typedefs to define function signatures for CPU and RAM retrieval
 typedef GetCpuUsageNative = ffi.Double Function();
 typedef GetCpuUsage = double Function();
 
@@ -14,13 +13,11 @@ typedef GetMemoryInfo = void Function(
 class SystemMonitorFFI {
   late ffi.DynamicLibrary _lib;
 
-  // Load the dynamic library based on platform (Android or Linux for testing)
   SystemMonitorFFI() {
     if (Platform.isAndroid) {
-      _lib = ffi.DynamicLibrary.open('libcpu_info.so'); // For Android
+      _lib = ffi.DynamicLibrary.open('libcpu_info.so');
     } else if (Platform.isLinux) {
-      _lib =
-          ffi.DynamicLibrary.open('./src/ffi/cpu_info.so'); // For Linux testing
+      _lib = ffi.DynamicLibrary.open('./src/ffi/cpu_info.so');
     }
   }
 
@@ -32,22 +29,19 @@ class SystemMonitorFFI {
     double usage = getCpuUsage();
 
     if (usage < 0) {
-      // Handle error case or log it
       print('Error retrieving CPU usage, invalid value: $usage');
-      // You can set a default value or return a known error
+
       usage = 0.0;
     }
 
     return usage;
   }
 
-  // Fetch RAM information by calling native function
   Map<String, double> getMemoryInfo() {
     final GetMemoryInfo getMemoryInfo = _lib
         .lookup<ffi.NativeFunction<GetMemoryInfoNative>>('get_memory_info')
         .asFunction();
 
-    // Use malloc to allocate memory for the returned total and free RAM values
     final ffi.Pointer<ffi.Double> totalRam = malloc<ffi.Double>();
     final ffi.Pointer<ffi.Double> freeRam = malloc<ffi.Double>();
 
@@ -58,7 +52,6 @@ class SystemMonitorFFI {
       'freeRam': freeRam.value,
     };
 
-    // Free the allocated memory
     malloc.free(totalRam);
     malloc.free(freeRam);
 

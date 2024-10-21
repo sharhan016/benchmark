@@ -45,8 +45,6 @@ class MyApp extends StatelessWidget {
                 AppLocalizations.of(context)!.appTitle,
             theme: AppColorTheme.light,
             darkTheme: AppColorTheme.dark,
-            // theme: FlexThemeData.light(scheme: FlexScheme.mandyRed),
-            // darkTheme: FlexThemeData.dark(scheme: FlexScheme.mandyRed),
             themeMode: settingsController.themeMode,
             initialRoute: HomeScreen.route,
             onGenerateRoute: (RouteSettings routeSettings) {

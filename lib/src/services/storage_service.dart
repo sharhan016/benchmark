@@ -5,26 +5,6 @@ import 'package:permission_handler/permission_handler.dart';
 class StorageService {
   Future<Map<String, double>> getStorageInfo(BuildContext context) async {
     try {
-      // Request permission to access storage
-      // PermissionStatus status = await Permission.manageExternalStorage.status;
-      // print("Permission status: $status isDenied: ${status.isDenied}");
-      // if (status.isDenied) {
-      //   // If permission is denied, request permission
-      //   final shouldOpenAppSettings = await _showPermissionDialog(context);
-      //   if (shouldOpenAppSettings) {
-      //     status = await Permission.manageExternalStorage.request();
-      //   }
-
-      //   print(
-      //       "Permission status after request: $status isPermanentlyDenied: ${status.isPermanentlyDenied} isRestricted: ${status.isRestricted}");
-      //   if (status.isPermanentlyDenied) {
-      //     final shouldOpenAppSettings = await _showPermissionDialog(context);
-      //     if (shouldOpenAppSettings) {
-      //       openAppSettings();
-      //     }
-      //   }
-      // }
-
       final totalSpace =
           (await FlutterStorageInfo.getStorageTotalSpaceInGB).ceilToDouble();
       final freeSpace =

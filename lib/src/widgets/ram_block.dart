@@ -66,21 +66,17 @@ class _RamBlockState extends State<RamBlock> {
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: theme.primaryColor),
       ),
-      // color: Colors.white24,
       child: Stack(
         children: [
-          // Translated and rotated SemicircularIndicator on the left side
           Transform.translate(
-            offset: const Offset(
-                -65, 100), // Adjust offset to move the indicator to the left
+            offset: const Offset(-65, 100),
             child: Transform.rotate(
-              angle: 1.5708, // 90 degrees in radians (π/2 or 1.5708 radians)
+              angle: 1.5708,
               child: SemicircularIndicator(
                 progress: usedRamPercentage,
                 strokeCap: StrokeCap.square,
                 color: theme.colorScheme.secondary,
                 backgroundColor: theme.colorScheme.primary,
-                // color: Colors.blueAccent,
                 radius: 150,
                 bottomPadding: 0,
                 child: Transform.rotate(
@@ -107,7 +103,6 @@ class _RamBlockState extends State<RamBlock> {
               ),
             ),
           ),
-          // RAM details on the right side
           Positioned(
             right: 20,
             top: 250,

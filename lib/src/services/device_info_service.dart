@@ -59,7 +59,7 @@ String getAndroidVersion(int sdkInt) {
       return 'Android 10';
     case 28:
       return 'Android 9 Pie';
-    // Add more cases for older versions if needed
+
     default:
       return 'Unknown Android Version';
   }
@@ -75,6 +75,6 @@ String getIOSVersion(String systemVersion) {
   } else if (systemVersion.startsWith("13")) {
     return "iOS 13";
   }
-  // Add more cases as needed
+
   return "Unknown iOS Version";
 }
